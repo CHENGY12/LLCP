@@ -1,0 +1,10 @@
+easydict
+h5py
+nltk
+numpy
+Pillow
+tqdm
+termcolor
+pyyaml
+scikit-learn
+ipdb
