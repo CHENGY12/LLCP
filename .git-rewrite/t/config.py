@@ -12,51 +12,25 @@ __C.num_workers = 4
 __C.multi_gpus = False
 __C.seed = 666
 # training options
-__C.train = edict()
-__C.train.restore = False
-__C.train.lr = 0.0001
-__C.train.batch_size = 32
-__C.train.max_epochs = 25
-#__C.train.vision_dim = 2048
-__C.train.vision_dim = 512
-# __C.train.train_num = 0 # Default 0 for full train set
-__C.train.restore = False
-__C.train = dict(__C.train)
-
-# validation
-__C.val = edict()
-__C.val.flag = True
-__C.val.val_num = 0 # Default 0 for full val set
-__C.val = dict(__C.val)
 
 # test
 __C.test = edict()
 __C.test.rate = 5.0 
 __C.test.thr = 0.05
 __C.test = dict(__C.test)
-
-# model
-__C.model = edict()
-__C.model.latent_layer_size = 256
-__C.model.latent_size = 10
-__C.model.con_latent_size = 16 
-__C.model = dict(__C.model)
-
 # dataset options
 __C.dataset = edict()
 __C.dataset.name = ''
-__C.dataset.test_object_feat= ''
-__C.dataset.train_object_feat= ''
+__C.dataset.object_feat= ''
 __C.dataset.appearance_feat = ''
 __C.dataset.test_question_pt = ''
-__C.dataset.train_question_pt = ''
-__C.dataset.video_list = ''
 __C.dataset.save_dir = ''
 __C.dataset = dict(__C.dataset)
 
 # experiment name
 __C.exp_name = 'defaultExp'
 
+# credit https://github.com/tohinz/pytorch-mac-network/blob/master/code/config.py
 def merge_cfg(yaml_cfg, cfg):
     if type(yaml_cfg) is not edict:
         return

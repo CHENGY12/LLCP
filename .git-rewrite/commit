@@ -1,0 +1,6 @@
+tree 7f41b9a4cd7ed0ae59e09dc729d4a659c43c0aab
+parent 5e42d1c786184410014e22bb16fd787f0fdabdf1
+author CHENGY12 <747389382@qqq.com> 1708951020 +0400
+committer CHENGY12 <747389382@qqq.com> 1708951020 +0400
+
+Add .gitignore to exclude data and results directories

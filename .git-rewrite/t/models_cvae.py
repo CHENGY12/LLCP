@@ -97,7 +97,6 @@ class ConEncoder(nn.Module):
         
 
     def forward(self, c):
-        
 
         if self.order == True:
             c0 = self.MLP_history(c[:,0,:])

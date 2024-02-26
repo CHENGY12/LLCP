@@ -1,6 +1,5 @@
 import torch
 import torch.nn as nn
-import ipdb
 
 
 class VAE(nn.Module):
@@ -61,6 +60,7 @@ class ConEncoder(nn.Module):
         self.MLP_history = nn.Sequential()
 
         for i, (in_size, out_size) in enumerate(zip(layer_sizes[:-1], layer_sizes[1:])):
+
             self.MLP_history.add_module(
                 name="L{:d}".format(i), module=nn.Linear(in_size, out_size))
             self.MLP_history.add_module(name="A{:d}".format(i), module=nn.ReLU())
@@ -94,10 +94,9 @@ class ConEncoder(nn.Module):
         self.MLP_condiction.add_module(
             name="L{:d}".format(0), module=nn.Linear(4*layer_sizes[-1], latent_size))
         self.MLP_condiction.add_module(name="A{:d}".format(0), module=nn.ReLU())
-        
+
 
     def forward(self, c):
-        
 
         if self.order == True:
             c0 = self.MLP_history(c[:,0,:])
@@ -109,11 +108,12 @@ class ConEncoder(nn.Module):
             c1 = self.MLP_neighbor(c[:,1,:])
             c2 = self.MLP_neighbor(c[:,2,:])
             c3 = self.MLP_env(c[:,3,:])
-
+        # ipdb.set_trace()
         c = torch.cat([c0, c1, c2, c3],dim=1)
         y = self.MLP_condiction(c)
     
         return y
+
 
 
 class Encoder(nn.Module):
@@ -138,8 +138,6 @@ class Encoder(nn.Module):
 
     def forward(self, x, c):
 
-
-
         x = torch.cat((x, c), dim=-1)
 
         x = self.MLP(x)
@@ -148,7 +146,6 @@ class Encoder(nn.Module):
         log_vars = self.linear_log_var(x)
 
         return means, log_vars
-
 
 
 class Decoder(nn.Module):
@@ -161,7 +158,6 @@ class Decoder(nn.Module):
 
         input_size = latent_size + condiction_size
 
-
         for i, (in_size, out_size) in enumerate(zip([input_size]+layer_sizes[:-1], layer_sizes)):
             self.MLP.add_module(
                 name="L{:d}".format(i), module=nn.Linear(in_size, out_size))
@@ -172,7 +168,6 @@ class Decoder(nn.Module):
 
 
     def forward(self, z, c):
-
 
         z = torch.cat((z, c), dim=-1)
 

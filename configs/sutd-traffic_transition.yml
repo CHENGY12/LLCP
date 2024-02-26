@@ -1,15 +1,21 @@
-gpu_id: 0
-multi_gpus: False
-num_workers: 4
-seed: 1
-
 test:
   rate: 6.0
   thr: 0.05
 
+
+train:
+  lr: 0.0001
+  batch_size: 16
+  restore: False
+  max_epochs: 20
+
+
 dataset:
   name: 'sutd-traffic'
   test_question_pt: "./data/test_questions.pt"
+  train_question_pt: "./data/train_questions.pt"
   appearance_feat: "./data/appearance_feat_rn50.h5"
-  object_feat: './data/object_test_feat' 
+  test_object_feat: './data/object_test_feat' 
+  train_object_feat: './data/object_train_feat' 
+  video_list: './data/video_noaccident_train.txt'
   save_dir: 'results/'
