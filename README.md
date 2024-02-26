@@ -50,9 +50,6 @@ python validate.py --cfg configs/sutd-traffic_transition.yml
 
 See [LLCP-Simulation](LLCP_simulation/).
 
-## License
-MIT License
-
 ## Citation
 If you find our work useful in your research, please consider citing:
 ```
